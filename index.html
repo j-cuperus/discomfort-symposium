@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>(Dis)comfort in Religious and Spiritual Places and Practices</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       CSS CUSTOM PROPERTIES — edit these to retheme the whole site
+       ========================================================= */
+    :root {
+      --clr-bg:          #f5f0e8;       /* warm parchment */
+      --clr-bg-alt:      #ede6d6;       /* slightly darker parchment */
+      --clr-surface:     #faf7f2;       /* near-white card surface */
+      --clr-border:      #c9b99a;       /* sepia border */
+      --clr-accent:      #7a1c2e;       /* maroon red */
+      --clr-accent-soft: #9e3347;       /* lighter maroon for hover */
+      --clr-text:        #2c2016;       /* dark brown-black body text */
+      --clr-text-muted:  #6b5743;       /* muted sepia text */
+      --clr-heading:     #1e1208;       /* near-black headings */
+      --clr-overlay:     rgba(20,10,5,0.52); /* hero overlay */
+
+      --font-serif:  'EB Garamond', Georgia, serif;
+      --font-sans:   'Jost', 'Futura', sans-serif;
+
+      --radius:  4px;
+      --shadow:  0 2px 18px rgba(90,50,20,0.10);
+      --max-w:   1060px;
+      --section-pad: 90px 24px;
+    }
+
+    /* =========================================================
+       RESET & BASE
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--clr-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* =========================================================
+       TYPOGRAPHY HELPERS
+       ========================================================= */
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      margin-bottom: 14px;
+    }
+    h2.section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 500;
+      color: var(--clr-heading);
+      line-height: 1.25;
+      margin-bottom: 28px;
+    }
+    p { margin-bottom: 1.1em; }
+
+    /* =========================================================
+       NAVIGATION BAR
+       ========================================================= */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 58px;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--clr-accent);
+      max-width: 340px;
+      line-height: 1.2;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--clr-accent); text-decoration: none; }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 60px 80px;
+      /* ── REPLACE the URL below with your own hero image ──
+         e.g. background-image: url('images/hero.jpg');      */
+      background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--clr-overlay);
+    }
+    .hero-content {
+      position: relative;
+      max-width: 820px;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,230,200,0.75);
+      margin-bottom: 20px;
+    }
+    h1.hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5.5vw, 5rem);
+      font-weight: 500;
+      line-height: 1.12;
+      color: #f8f1e4;
+      margin-bottom: 28px;
+    }
+    h1.hero-title em {
+      font-style: italic;
+      color: #e8b4a0;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+    .hero-meta-item {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      color: rgba(248,241,228,0.80);
+    }
+    .hero-meta-item strong {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(232,180,160,0.70);
+      margin-bottom: 3px;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      right: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(248,241,228,0.5);
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: rgba(248,241,228,0.35);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.35; transform: scaleY(1); }
+      50%      { opacity: 0.9;  transform: scaleY(0.6); }
+    }
+
+    /* =========================================================
+       SHARED SECTION WRAPPER
+       ========================================================= */
+    .section-wrap {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: var(--section-pad);
+    }
+    .section-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--clr-accent);
+      margin-bottom: 36px;
+    }
+
+    /* =========================================================
+       ABOUT SECTION
+       ========================================================= */
+    #about {
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    #about .inner {
+      max-width: 720px;
+    }
+    #about p {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: var(--clr-text);
+    }
+    .about-organiser {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--clr-border);
+      font-size: 0.88rem;
+      color: var(--clr-text-muted);
+      font-family: var(--font-sans);
+    }
+    .about-organiser strong { color: var(--clr-text); }
+
+    /* =========================================================
+       CONTRIBUTORS SECTION
+       ========================================================= */
+    #contributors {
+      background: var(--clr-bg-alt);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .contributors-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px) {
+      .contributors-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Accordion */
+    .accordion-item {
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.25s;
+    }
+    .accordion-item:hover { box-shadow: var(--shadow); }
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+    }
+    .accordion-trigger:hover { background: rgba(122,28,46,0.04); }
+    .accordion-trigger-left { display: flex; align-items: center; gap: 16px; }
+    .accordion-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--clr-border);
+      flex-shrink: 0;
+      /* placeholder colour shown when no image is set */
+      background: var(--clr-bg-alt);
+    }
+    .accordion-name {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--clr-heading);
+      line-height: 1.3;
+    }
+    .accordion-institution {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--clr-text-muted);
+      margin-top: 2px;
+    }
+    .accordion-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--clr-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, background 0.2s;
+      color: var(--clr-accent);
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+      background: var(--clr-accent);
+      border-color: var(--clr-accent);
+      color: #fff;
+    }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .accordion-body-inner {
+      padding: 0 22px 24px;
+      border-top: 1px solid var(--clr-border);
+    }
+    .contributor-photo-wrap {
+      margin: 18px 0 16px;
+    }
+    .contributor-photo {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      /* placeholder background when no photo is provided */
+      background: var(--clr-bg-alt);
+      min-height: 120px;
+    }
+    .contributor-paper-title {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--clr-accent);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .contributor-abstract,
+    .contributor-bio {
+      font-family: var(--font-sans);
+      font-size: 0.87rem;
+      line-height: 1.7;
+      color: var(--clr-text);
+    }
+    .contributor-bio {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--clr-border);
+      color: var(--clr-text-muted);
+    }
+    .bio-label {
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* =========================================================
+       SCHEDULE SECTION
+       ========================================================= */
+    #schedule {
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .schedule-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+    }
+    table.schedule {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+    }
+    table.schedule thead th {
+      background: var(--clr-accent);
+      color: #f8f1e4;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 18px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+    }
+    table.schedule tbody tr {
+      border-bottom: 1px solid var(--clr-border);
+      transition: background 0.15s;
+    }
+    table.schedule tbody tr:last-child { border-bottom: none; }
+    table.schedule tbody tr:hover { background: rgba(122,28,46,0.04); }
+    table.schedule tbody td {
+      padding: 12px 18px;
+      vertical-align: top;
+      color: var(--clr-text);
+      line-height: 1.55;
+    }
+    table.schedule tbody td:first-child {
+      white-space: nowrap;
+      color: var(--clr-text-muted);
+      font-size: 0.82rem;
+    }
+    /* Special row types */
+    tr.row-break td {
+      background: var(--clr-bg-alt);
+      color: var(--clr-text-muted);
+      font-style: italic;
+      font-size: 0.82rem;
+    }
+    tr.row-keynote td {
+      background: rgba(122,28,46,0.06);
+    }
+    tr.row-keynote td:first-child { color: var(--clr-accent); font-weight: 500; }
+    td.presenter {
+      font-style: italic;
+      color: var(--clr-text-muted);
+      font-size: 0.82rem;
+    }
+    td.paper-title { font-family: var(--font-serif); font-size: 0.96rem; }
+
+    /* =========================================================
+       ADDITIONAL INFO SECTION
+       ========================================================= */
+    #info {
+      background: var(--clr-bg-alt);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    #info .inner { max-width: 720px; }
+    #info p {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--clr-text);
+    }
+    #info h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 28px 0 10px;
+      color: var(--clr-heading);
+    }
+
+    /* =========================================================
+       RESOURCES / DOWNLOADS SECTION
+       ========================================================= */
+    #resources {
+      background: var(--clr-surface);
+      border-bottom: 1px solid var(--clr-border);
+    }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .resource-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: var(--clr-bg);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .resource-card:hover {
+      box-shadow: var(--shadow);
+      border-color: var(--clr-accent);
+      text-decoration: none;
+    }
+    .resource-icon {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      background: rgba(122,28,46,0.10);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-accent);
+      font-size: 1.1rem;
+    }
+    .resource-info { min-width: 0; }
+    .resource-name {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--clr-heading);
+      margin-bottom: 4px;
+    }
+    .resource-desc {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--clr-text-muted);
+      line-height: 1.5;
+    }
+    /* Placeholder card for forthcoming resources */
+    .resource-card.placeholder {
+      opacity: 0.55;
+      pointer-events: none;
+      border-style: dashed;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      background: var(--clr-heading);
+      color: rgba(248,241,228,0.55);
+      padding: 42px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+    footer .footer-title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(248,241,228,0.80);
+    }
+    footer a { color: rgba(232,180,160,0.75); }
+    footer a:hover { color: #e8b4a0; }
+
+    /* =========================================================
+       SCROLL-IN ANIMATION
+       ========================================================= */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav>
+    <span class="nav-logo">(Dis)comfort in Religious &amp; Spiritual Places and Practices</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#contributors">Contributors</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#info">Info</a></li>
+      <li><a href="#resources">Resources</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+       To use your own image: replace the background-image URL in
+       #hero in the CSS above, or add style="background-image:url('your-image.jpg')"
+       to the section tag below.
+       ============================================================ -->
+  <section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">One-Day Academic Symposium &nbsp;·&nbsp; [INSTITUTION NAME]</p>
+      <h1 class="hero-title"><em>(Dis)comfort</em> in Religious and Spiritual Places and Practices</h1>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <strong>Date</strong>
+          [Day], [DD Month YYYY]
+        </div>
+        <div class="hero-meta-item">
+          <strong>Venue</strong>
+          [Room / Building, Institution]
+        </div>
+        <div class="hero-meta-item">
+          <strong>Format</strong>
+          In-Person &amp; Online
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT / ABSTRACT
+       ============================================================ -->
+  <section id="about">
+    <div class="section-wrap">
+      <div class="inner fade-up">
+        <p class="section-label">About the Symposium</p>
+        <h2 class="section-title">Purpose &amp; Background</h2>
+        <div class="section-divider"></div>
+
+        <!-- ── REPLACE THE PARAGRAPHS BELOW WITH YOUR OWN ABSTRACT ── -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed perspiciatis unde omnis iste natus error sit voluptatem.</p>
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consectetur adipisci velit.</p>
+        <!-- ── END ABSTRACT ── -->
+
+        <div class="about-organiser">
+          Organised by <strong>[Organiser Name]</strong>, [Department / Centre], [Institution] &nbsp;·&nbsp;
+          Contact: <a href="mailto:email@institution.ac.uk">[email@institution.ac.uk]</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTRIBUTORS
+       Duplicate an .accordion-item block for each contributor.
+       There are 13 placeholders below.
+       ============================================================ -->
+  <section id="contributors">
+    <div class="section-wrap">
+      <p class="section-label fade-up">Speakers &amp; Contributors</p>
+      <h2 class="section-title fade-up">Contributors</h2>
+      <div class="section-divider fade-up"></div>
+
+      <div class="contributors-grid">
+
+        <!-- ── CONTRIBUTOR 1 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <!-- Replace src with path to contributor photo, e.g. images/contributor1.jpg -->
+              <img class="accordion-thumb" src="" alt="Contributor 1 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 1]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <!-- Larger photo inside the dropdown. Same src as above or a different image. -->
+                <img class="contributor-photo" src="" alt="Contributor 1 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder. Replace this text with the actual abstract for Contributor 1's paper. This should be a brief summary of the argument, methodology, and key findings or themes of the contribution.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 1. Include institutional affiliation, research interests, and any relevant publications or projects. Approximately 2–4 sentences.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 2 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 2 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 2]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 2 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 2.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 2.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 3 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 3 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 3]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 3 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 3.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 3.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 4 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 4 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 4]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 4 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 4.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 4.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 5 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 5 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 5]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 5 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 5.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 5.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 6 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 6 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 6]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 6 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 6.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 6.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 7 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 7 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 7]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 7 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 7.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 7.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 8 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 8 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 8]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 8 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 8.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 8.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 9 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 9 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 9]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 9 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 9.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 9.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 10 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 10 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 10]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 10 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 10.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 10.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 11 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 11 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 11]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 11 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 11.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 11.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 12 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 12 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 12]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 12 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 12.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 12.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CONTRIBUTOR 13 ── -->
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger" aria-expanded="false">
+            <div class="accordion-trigger-left">
+              <img class="accordion-thumb" src="" alt="Contributor 13 photo" onerror="this.style.background='#c9b99a'">
+              <div>
+                <div class="accordion-name">[Contributor Name 13]</div>
+                <div class="accordion-institution">[University / Institution]</div>
+              </div>
+            </div>
+            <span class="accordion-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="contributor-photo-wrap">
+                <img class="contributor-photo" src="" alt="Contributor 13 photo" onerror="this.style.background='#c9b99a'">
+              </div>
+              <p class="contributor-paper-title">[Paper Title Placeholder]</p>
+              <p class="contributor-abstract">[Paper abstract placeholder for Contributor 13.]</p>
+              <div class="contributor-bio">
+                <span class="bio-label">About</span>
+                [Short bio placeholder for Contributor 13.]
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /contributors-grid -->
+    </div><!-- /section-wrap -->
+  </section>
+
+
+  <!-- ============================================================
+       SCHEDULE
+       The table has 4 columns: Time | Session / Event | Presenter | Room/Location
+       34 rows are provided below (1 header + 33 data rows).
+       Row classes:
+         (default)    — regular paper presentation
+         row-keynote  — highlighted keynote/plenary
+         row-break    — coffee break, lunch, registration, etc.
+       ============================================================ -->
+  <section id="schedule">
+    <div class="section-wrap">
+      <p class="section-label fade-up">Programme</p>
+      <h2 class="section-title fade-up">Schedule</h2>
+      <div class="section-divider fade-up"></div>
+
+      <div class="schedule-table-wrap fade-up">
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Session / Event</th>
+              <th>Presenter / Chair</th>
+              <th>Room / Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr class="row-break">
+              <td>09:00</td>
+              <td colspan="2">Registration &amp; Coffee</td>
+              <td>[Foyer / Room]</td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="row-keynote">
+              <td>09:30</td>
+              <td class="paper-title">Welcome &amp; Opening Remarks</td>
+              <td class="presenter">[Organiser Name]</td>
+              <td>[Main Hall]</td>
+            </tr>
+            <!-- Row 3 -->
+            <tr class="row-keynote">
+              <td>09:45</td>
+              <td class="paper-title">Keynote: [Keynote Title Placeholder]</td>
+              <td class="presenter">[Keynote Speaker]</td>
+              <td>[Main Hall]</td>
+            </tr>
+            <!-- Row 4 -->
+            <tr>
+              <td>10:30</td>
+              <td class="paper-title">Panel 1, Paper 1: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 5 -->
+            <tr>
+              <td>10:50</td>
+              <td class="paper-title">Panel 1, Paper 2: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 6 -->
+            <tr>
+              <td>11:10</td>
+              <td class="paper-title">Panel 1, Paper 3: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 7 -->
+            <tr>
+              <td>11:30</td>
+              <td>Panel 1 Discussion &amp; Q&amp;A</td>
+              <td class="presenter">[Chair Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 8 -->
+            <tr class="row-break">
+              <td>12:00</td>
+              <td colspan="2">Coffee Break</td>
+              <td>[Foyer]</td>
+            </tr>
+            <!-- Row 9 -->
+            <tr>
+              <td>12:15</td>
+              <td class="paper-title">Panel 2, Paper 1: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 10 -->
+            <tr>
+              <td>12:35</td>
+              <td class="paper-title">Panel 2, Paper 2: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 11 -->
+            <tr>
+              <td>12:55</td>
+              <td class="paper-title">Panel 2, Paper 3: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 12 -->
+            <tr>
+              <td>13:15</td>
+              <td>Panel 2 Discussion &amp; Q&amp;A</td>
+              <td class="presenter">[Chair Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 13 -->
+            <tr class="row-break">
+              <td>13:45</td>
+              <td colspan="2">Lunch Break</td>
+              <td>[Dining Room / Foyer]</td>
+            </tr>
+            <!-- Row 14 -->
+            <tr>
+              <td>14:45</td>
+              <td class="paper-title">Panel 3, Paper 1: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 15 -->
+            <tr>
+              <td>15:05</td>
+              <td class="paper-title">Panel 3, Paper 2: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 16 -->
+            <tr>
+              <td>15:25</td>
+              <td class="paper-title">Panel 3, Paper 3: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 17 -->
+            <tr>
+              <td>15:45</td>
+              <td>Panel 3 Discussion &amp; Q&amp;A</td>
+              <td class="presenter">[Chair Name]</td>
+              <td>[Room A]</td>
+            </tr>
+            <!-- Row 18 -->
+            <tr class="row-break">
+              <td>16:15</td>
+              <td colspan="2">Coffee Break</td>
+              <td>[Foyer]</td>
+            </tr>
+            <!-- Row 19 -->
+            <tr>
+              <td>16:30</td>
+              <td class="paper-title">Panel 4, Paper 1: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 20 -->
+            <tr>
+              <td>16:50</td>
+              <td class="paper-title">Panel 4, Paper 2: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 21 -->
+            <tr>
+              <td>17:10</td>
+              <td class="paper-title">Panel 4, Paper 3: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 22 -->
+            <tr>
+              <td>17:30</td>
+              <td>Panel 4 Discussion &amp; Q&amp;A</td>
+              <td class="presenter">[Chair Name]</td>
+              <td>[Room B]</td>
+            </tr>
+            <!-- Row 23 -->
+            <tr class="row-break">
+              <td>18:00</td>
+              <td colspan="2">Short Break</td>
+              <td>[Foyer]</td>
+            </tr>
+            <!-- Row 24 -->
+            <tr>
+              <td>18:15</td>
+              <td class="paper-title">Panel 5, Paper 1: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Main Hall]</td>
+            </tr>
+            <!-- Row 25 -->
+            <tr>
+              <td>18:35</td>
+              <td class="paper-title">Panel 5, Paper 2: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Main Hall]</td>
+            </tr>
+            <!-- Row 26 -->
+            <tr>
+              <td>18:55</td>
+              <td class="paper-title">Panel 5, Paper 3: [Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Main Hall]</td>
+            </tr>
+            <!-- Row 27 -->
+            <tr>
+              <td>19:15</td>
+              <td>Panel 5 Discussion &amp; Q&amp;A</td>
+              <td class="presenter">[Chair Name]</td>
+              <td>[Main Hall]</td>
+            </tr>
+            <!-- Row 28 -->
+            <tr class="row-break">
+              <td>19:45</td>
+              <td colspan="2">Comfort Break</td>
+              <td>[Foyer]</td>
+            </tr>
+            <!-- Row 29 -->
+            <tr>
+              <td>20:00</td>
+              <td class="paper-title">[Additional Session / Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room]</td>
+            </tr>
+            <!-- Row 30 -->
+            <tr>
+              <td>20:20</td>
+              <td class="paper-title">[Additional Session / Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room]</td>
+            </tr>
+            <!-- Row 31 -->
+            <tr>
+              <td>20:40</td>
+              <td class="paper-title">[Additional Session / Paper Title]</td>
+              <td class="presenter">[Contributor Name]</td>
+              <td>[Room]</td>
+            </tr>
+            <!-- Row 32 -->
+            <tr>
+              <td>21:00</td>
+              <td>[Session / Q&amp;A Placeholder]</td>
+              <td class="presenter">[Chair Name]</td>
+              <td>[Room]</td>
+            </tr>
+            <!-- Row 33 -->
+            <tr class="row-keynote">
+              <td>21:30</td>
+              <td class="paper-title">Closing Remarks &amp; Roundtable</td>
+              <td class="presenter">[Organiser Name]</td>
+              <td>[Main Hall]</td>
+            </tr>
+            <!-- Row 34 -->
+            <tr class="row-break">
+              <td>22:00</td>
+              <td colspan="2">Close / Drinks Reception</td>
+              <td>[Venue / TBC]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ADDITIONAL INFORMATION
+       ============================================================ -->
+  <section id="info">
+    <div class="section-wrap">
+      <div class="inner fade-up">
+        <p class="section-label">Practical Information</p>
+        <h2 class="section-title">Additional Information</h2>
+        <div class="section-divider"></div>
+
+        <!-- ── Replace with your own content ── -->
+        <h3>Getting Here</h3>
+        <p>[Insert venue address and travel directions here. Include information about public transport links, parking, and accessibility.]</p>
+
+        <h3>Online Participation</h3>
+        <p>[Insert Zoom / Teams link and joining instructions here. Specify which sessions will be available online and any technical requirements.]</p>
+
+        <h3>Accessibility</h3>
+        <p>[Insert accessibility information here, including details about step-free access, hearing loops, quiet spaces, dietary requirements for catering, etc.]</p>
+
+        <h3>Contact</h3>
+        <p>For queries, please contact <a href="mailto:email@institution.ac.uk">[email@institution.ac.uk]</a>.</p>
+        <!-- ── End additional info ── -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       RESOURCES / DOWNLOADS
+       To add a PDF: duplicate a .resource-card block,
+       set href="pdfs/your-file.pdf", update the name and description,
+       and remove the "placeholder" class.
+       ============================================================ -->
+  <section id="resources">
+    <div class="section-wrap">
+      <p class="section-label fade-up">Downloads</p>
+      <h2 class="section-title fade-up">Resources</h2>
+      <div class="section-divider fade-up"></div>
+
+      <div class="resources-grid fade-up">
+
+        <!-- Live resource example (remove "placeholder" class when file is ready) -->
+        <a href="pdfs/programme.pdf" download class="resource-card placeholder">
+          <div class="resource-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          </div>
+          <div class="resource-info">
+            <div class="resource-name">Full Programme (PDF)</div>
+            <div class="resource-desc">Printable one-day programme with abstracts — coming soon</div>
+          </div>
+        </a>
+
+        <a href="pdfs/abstracts.pdf" download class="resource-card placeholder">
+          <div class="resource-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          </div>
+          <div class="resource-info">
+            <div class="resource-name">Abstracts Booklet (PDF)</div>
+            <div class="resource-desc">All paper abstracts in a single document — coming soon</div>
+          </div>
+        </a>
+
+        <a href="pdfs/cfp.pdf" download class="resource-card placeholder">
+          <div class="resource-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          </div>
+          <div class="resource-info">
+            <div class="resource-name">Call for Papers (PDF)</div>
+            <div class="resource-desc">Original CfP document — coming soon</div>
+          </div>
+        </a>
+
+        <!-- Add further resource cards here as needed -->
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="footer-title">(Dis)comfort in Religious and Spiritual Places and Practices</div>
+    <div>[DD Month YYYY] &nbsp;·&nbsp; [Institution Name] &nbsp;·&nbsp; <a href="mailto:email@institution.ac.uk">[email@institution.ac.uk]</a></div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT — accordion + scroll animation
+       No external libraries required.
+       ============================================================ -->
+  <script>
+    // ── Accordion ────────────────────────────────────────────────
+    document.querySelectorAll('.accordion-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.accordion-item');
+        const body = item.querySelector('.accordion-body');
+        const isOpen = item.classList.contains('open');
+
+        // Close all others
+        document.querySelectorAll('.accordion-item.open').forEach(openItem => {
+          openItem.classList.remove('open');
+          openItem.querySelector('.accordion-body').style.maxHeight = null;
+          openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+        });
+
+        // Toggle this one
+        if (!isOpen) {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ── Scroll-in fade animation ──────────────────────────────────
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
